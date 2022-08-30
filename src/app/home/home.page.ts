@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  contatos: string[];
+  contatos: any[];
 
-  constructor() {
-    this.contatos = ['Carlos Eduardo', 'Regiane Orlovski', 'Kelly Wiggers'];
+  constructor(private router: Router) {
+    this.contatos = [
+      { nome: 'Carlos Eduardo', telefone: 42991094415 },
+      { nome: 'Regiane Orlovski', telefone: 42991090123 },
+      { nome: 'Antonio Zampier', telefone: 4299104343 },
+    ];
+  }
+
+  private irParaCadastrarPage(): void {
+    this.router.navigate(['/cadastrar']);
   }
 }
