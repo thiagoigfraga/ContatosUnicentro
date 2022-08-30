@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  contatos: string[];
 
-  constructor() {}
-
+  constructor() {
+    this.contatos = ['Carlos Eduardo', 'Regiane Orlovski', 'Kelly Wiggers'];
+  }
 }
