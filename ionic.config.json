@@ -1,0 +1,7 @@
+{
+  "name": "ContatosUnicentro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
