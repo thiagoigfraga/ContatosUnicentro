@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Contato } from 'src/app/models/contato';
+import { ContatosService } from 'src/app/services/contatos-service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -7,16 +10,39 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./cadastrar.page.scss'],
 })
 export class CadastrarPage implements OnInit {
-  private _nome: string;
-  private _telefone: number;
+  nome: string;
+  telefone: number;
+  genero: string;
+  dataNascimento: string;
+  data: string;
 
-  constructor(public alertController: AlertController) {}
+  constructor(
+    public alertController: AlertController,
+    public router: Router,
+    private contatoService: ContatosService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data = new Date().toISOString();
+  }
 
   private cadastrar(): void {
-    if (this.validar(this._nome) && this.validar(this._telefone)) {
+    this.dataNascimento = this.dataNascimento.split('T')[0];
+    if (
+      this.validar(this.nome) &&
+      this.validar(this.telefone) &&
+      this.validar(this.genero) &&
+      this.validar(this.dataNascimento)
+    ) {
+      let contato: Contato = new Contato(
+        this.nome,
+        this.telefone,
+        this.genero,
+        this.dataNascimento
+      );
+      this.contatoService.inserir(contato);
       this.presentAlert('Agenda', 'Cadastro', 'Efetuado com Sucesso!');
+      this.router.navigate(['/home']);
     } else {
       this.presentAlert(
         'Agenda',

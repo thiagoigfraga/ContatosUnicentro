@@ -9,8 +9,8 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item-group *ngFor="let contato of contatos">
-    <ion-item lines="none">Nome: {{contato?.nome}}</ion-item>
-    <ion-item>Telefone: {{contato?.telefone}}</ion-item>
+    <ion-item lines="none">Nome: {{contato.nome}}</ion-item>
+    <ion-item>Telefone: {{contato.telefone}}</ion-item>
     </ion-item-group>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
